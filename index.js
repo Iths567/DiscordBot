@@ -46,12 +46,12 @@ client.once('ready', () => {
 	client.user.setPresence({
 		status: 'available',
 		activity: {
-			name: 'Hentai Fun Time',
-			type: 'PLAYING',
+			name: 'Over the Channels',
+			type: 'WATCHING',
 		},
 	});
 });
-// this is the constant definition which should allow the bot to interact with the server (guild) however perhaps becuase it relies on the client recieving the guild ID it does not work?
+// this is the constant definition which should allow the bot to interact with the server (guild)
 const guild = client.guilds.cache.get('476431087296577546');
 
 
