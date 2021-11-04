@@ -5,16 +5,17 @@ module.exports = {
 	aliases: ['commands'],
 	usage: '[command name]',
 	cooldown: 5,
-	execute (message, args ) {
+	execute(message, args) {
 		const data = [];
-		const {commands } = message.client;
-		
+		const { commands } = message.client;
+
 		if (!args.length) {
 			data.push('Here\'s a list of all my commands:');
 			data.push(commands.map(command => command.name).join('\n '));
 			data.push(`\nYou can send \`${prefix}help [command name]\` to get info on a specific command!`);
 
-			return message.author.send(data, { split: true })
+			return message.author.send(data.join(' '), { split: true })
+			// return message.author.send(data, { split: true })
 				.then(() => {
 					if (message.channel.type === 'dm') return;
 					message.reply('I\'ve sent you a DM with all my commands!');
@@ -24,7 +25,7 @@ module.exports = {
 					message.reply('it seems like I can\'t DM you! Do you have DMs disabled?');
 				});
 		}
-		
+
 		const name = args[0].toLowerCase();
 		const command = commands.get(name) || commands.find(c => c.aliases && c.aliases.includes(name));
 
@@ -40,7 +41,7 @@ module.exports = {
 
 		data.push(`**Cooldown:** ${command.cooldown || 3} second(s)`);
 
-		message.channel.send(data, { split: true });
+		message.channel.send(data.join(' '), { split: true });
 
 	},
 };
